@@ -10,7 +10,11 @@
         col=6
         @change="log"
       >
-      <template v-slot:ttttttttttttttt="{obj}">
+      <template v-slot:tttttrt="{obj}">
+        <h1>Here might be a page title {{ obj }}</h1>
+      </template>
+
+      <template v-slot:kkkkrkk="{obj}">
         <h1>Here might be a page title {{ obj }}</h1>
       </template>
     </v-form-base>
@@ -35,7 +39,8 @@ export default {
       myModel: {
       type: 2,
       list: [{
-        src: []
+        src: [],
+        src2: []
       }],
       btn: ''
     },
@@ -45,7 +50,16 @@ export default {
         col: 12,
         schema: {
           src: {
-            slotPrefix: 'ttttttttttttttt',
+            customSlotKey: 'tttttt',
+            type: "file",
+            label: "图片文件",
+            showSize: true,
+            counter: true,
+            accept: "image/*",
+            col: 12
+          },
+          src2: {
+            customSlotKey: 'kkkkkk',
             type: "file",
             label: "图片文件",
             showSize: true,

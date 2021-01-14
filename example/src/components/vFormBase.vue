@@ -7,6 +7,8 @@
     <!-- FORM-BASE TOP SLOT -->
     <slot :name="getFormTopSlot()"/>
 
+    <slot></slot>
+
     <!-- main loop over components/controls -->
     <template v-for="(obj, index) in flatCombinedArraySorted">
 
@@ -43,7 +45,7 @@
               <!-- slot replaces complete item of defined KEY -> <div slot="slot-item-key-[propertyName]">-->
               <slot :name="getKeyItemSlot(obj)" :obj= "obj" >
               <!-- custom slot on top of key  -->
-              <slot :name="obj.schema.slotPrefix" :obj= "obj" />
+              <slot :name="obj.schema.customSlotKey" :obj= "obj" />
               <!-- RADIO -->
                 <v-radio-group
                   v-if="obj.schema.type === 'radio'"
@@ -113,8 +115,8 @@
                         :col="getColGroupOrArray(obj)"
                         :class="`${id}-${obj.key}`"
                       >
-                        <template v-slot:[`${obj.schema.slotPrefix}`]="{obj}">
-                          <slot :name="obj.schema.slotPrefix" :obj= "obj" />
+                        <template v-for="(i, index) of getCustomSlotKeyArray(obj)" v-slot:[obj.schema.schema[`${i}`].customSlotKey]="{obj}">
+                          <slot :name="obj.schema.customSlotKey" :obj= "obj" />
                         </template>
                       </v-form-base>
                     </slot>
@@ -763,6 +765,11 @@ export default {
     getTypeBottomSlot (obj) {
       // get Type specific slot name  -> 'slot-bottom-type-radio'
       return this.getTypeClassNameWithAppendix(obj, bottomSlotAppendix + '-type')
+    },
+  //
+  // customSlotKey
+    getCustomSlotKeyArray (obj) {
+      return Object.keys(obj.schema.schema)
     },
   //
   // CLASS Names
