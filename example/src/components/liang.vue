@@ -10,12 +10,9 @@
         col=6
         @change="log"
       >
-      <template v-slot:tttttrt="{obj}">
-        <h1>Here might be a page title {{ obj }}</h1>
-      </template>
 
-      <template v-slot:kkkkrkk="{obj}">
-        <h1>Here might be a page title {{ obj }}</h1>
+      <template v-slot:kkkkkk="{ obj }">
+        <div>---------------> : {{ obj }}</div>
       </template>
     </v-form-base>
     </v-form>
@@ -42,6 +39,7 @@ export default {
         src: [],
         src2: []
       }],
+      name:  '',
       btn: ''
     },
       mySchema: {
@@ -56,6 +54,7 @@ export default {
             showSize: true,
             counter: true,
             accept: "image/*",
+            clearable: true,
             col: 12
           },
           src2: {
@@ -65,10 +64,12 @@ export default {
             showSize: true,
             counter: true,
             accept: "image/*",
+            clearable: true,
             col: 12
           }
         }
       },
+      name: { type: 'text', customSlotKey: 'rrrrrr' },
       addImageListItem: { type: 'btn', iconLeft: 'mdi-plus', label:'添加', dark: true, small: true, rounded: true, class:'mb-2', color: 'blue lighten-2' },
       removeImageListItem: { type: 'btn', iconLeft: 'mdi-minus', label:'减少', dark: true, small: true, rounded: true, class:'mb-2', color: 'blue lighten-2' }
     }
