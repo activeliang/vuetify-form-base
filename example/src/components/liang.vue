@@ -11,7 +11,7 @@
         @change="log"
       >
 
-      <template v-slot:kkkkkk="{ obj }">
+      <template v-slot:tttttt="{ obj }">
         <div>---------------> : {{ obj }}</div>
       </template>
     </v-form-base>
@@ -37,7 +37,8 @@ export default {
       type: 2,
       list: [{
         src: [],
-        src2: []
+      },{
+        src: [],
       }],
       name:  '',
       btn: ''
@@ -56,20 +57,10 @@ export default {
             accept: "image/*",
             clearable: true,
             col: 12
-          },
-          src2: {
-            customSlotKey: 'kkkkkk',
-            type: "file",
-            label: "图片文件",
-            showSize: true,
-            counter: true,
-            accept: "image/*",
-            clearable: true,
-            col: 12
           }
         }
       },
-      name: { type: 'text', customSlotKey: 'rrrrrr' },
+      name: { type: 'text', customSlotKey: 'tttttt' },
       addImageListItem: { type: 'btn', iconLeft: 'mdi-plus', label:'添加', dark: true, small: true, rounded: true, class:'mb-2', color: 'blue lighten-2' },
       removeImageListItem: { type: 'btn', iconLeft: 'mdi-minus', label:'减少', dark: true, small: true, rounded: true, class:'mb-2', color: 'blue lighten-2' }
     }

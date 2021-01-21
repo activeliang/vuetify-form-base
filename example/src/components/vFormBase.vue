@@ -44,7 +44,7 @@
               <!-- slot replaces complete item of defined KEY -> <div slot="slot-item-key-[propertyName]">-->
               <slot :name="getKeyItemSlot(obj)" :obj= "obj" >
               <!-- custom slot on top of key  -->
-              <slot :name="obj.schema.customSlotKey" :obj= "addPaths(obj, prePaths, obj.key)" />
+              <slot :name="obj.schema.customSlotKey" :obj= "addPaths(obj, prePaths)" />
               <!-- RADIO -->
                 <v-radio-group
                   v-if="obj.schema.type === 'radio'"
@@ -113,7 +113,7 @@
                         :row="getRowGroupOrArray(obj)"
                         :col="getColGroupOrArray(obj)"
                         :class="`${id}-${obj.key}`"
-                        :prePaths="[obj.key, item]"
+                        :prePaths="[obj.key, idx]"
                       >
                         <template v-for="(i, index) of getCustomSlotKeyArray(obj)" v-slot:[obj.schema.schema[`${i}`].customSlotKey]="{obj}">
                           <slot :name="obj.schema.customSlotKey" :obj= "obj" />
@@ -622,23 +622,9 @@ export default {
       this.updateArrayFromState(this.valueIntern, this.schema)
       return this.schema
     },
-    simplePaths () {
-      return (paths, key) => {
-        const last = paths[paths.length - 1]
-        if (!last) return paths
-        if (last.constructor.name === 'Object') {
-          const newPaths = paths.slice(0, -1)
-          newPaths.push(Object.keys(last).findIndex(i => i == key))
-          newPaths.push(key)
-          return newPaths
-        } else {
-          return key
-        }
-      }
-    },
     addPaths() {
-      return (obj, paths, key) => {
-        obj.paths = this.simplePaths(paths, key)
+      return (obj, paths) => {
+        obj.paths = [...paths, obj.key]
         return obj
       }
     }
