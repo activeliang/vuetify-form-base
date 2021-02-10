@@ -34,6 +34,33 @@ export default {
   components: { VFormBase, Infoline },
   data () {
     return {
+      audio: {
+        model: {
+          type: 3,
+          src: null,
+          src_volume: null,
+          src_title: null
+        },
+        schema: {
+          src: {
+            type: "file",
+            label: "音频文件(mp3)",
+            showSize: true,
+            accept: "audio/mp3",
+            col: 6,
+            clearable: true,
+            customSlotKey: 'course-audio-src'
+          },
+          src_volume: {
+            type: 'number',
+            hidden: true
+          },
+          src_title: {
+            type: 'text',
+            hidden: true
+          }
+        }
+      },
       myModel: {
         type: 5,
         description: "判断题，Please choose the correct answer...",
@@ -62,23 +89,20 @@ export default {
         schema: {
           type: 'group',
           schema: {
-            type: 'wrap',
-            schema: [{
-              list: [{
-                src: {
-                  type: 'file',
-                  label: "图片文件",
-                  showSize: true,
-                  accept: "image/*",
-                  class: 'w-full',
-                  col: 11,
-                  clearable: true,
-                  customSlotKey: 'kkkkkkkkt'
-                },
-                removeImageListItem: { type: 'btn', col: 1, iconLeft: 'mdi-minus', label:'移除', dark: true, small: true, rounded: true, class:'mb-2', color: 'error lighten-2', class: 'mt-3' },
-              }],
-              addImageListItem: { type: 'btn', iconLeft: 'mdi-plus', label:'添加', dark: true, small: true, rounded: true, class:'mb-2', color: 'blue lighten-2', class: 'mt-3' }
-            }]
+            list: [{
+              src: {
+                type: 'file',
+                label: "图片文件",
+                showSize: true,
+                accept: "image/*",
+                class: 'w-full',
+                col: 11,
+                clearable: true,
+                customSlotKey: 'kkkkkkkkt'
+              },
+              removeImageListItem: { type: 'btn', col: 1, iconLeft: 'mdi-minus', label:'移除', dark: true, small: true, rounded: true, class:'mb-2', color: 'error lighten-2', class: 'mt-3' },
+            }],
+            addImageListItem: { type: 'btn', iconLeft: 'mdi-plus', label:'添加', dark: true, small: true, rounded: true, class:'mb-2', color: 'blue lighten-2', class: 'mt-3' }
           }
         }
       }
@@ -99,6 +123,13 @@ export default {
       if (key == '0.addImageListItem') {
         this.myModel.material[0].list.push(this.imgItem.model.list[0])
         this.mySchema.material.schema[0].list.push(this.imgItem.schema.list[0])
+      }
+
+      if (key == 'addTureOrFalseAudioItem') {
+        console.log('9999999999: ', this.myModel.material)
+        if (!Array.isArray(this.myModel.material)) this.myModel.material = []
+        this.myModel.material.push(this.audio.model)
+        this.mySchema.material.schema.push(this.audio.schema)
       }
     }
   }
