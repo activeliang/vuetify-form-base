@@ -10,10 +10,10 @@
     <slot></slot>
 
     <!-- main loop over components/controls -->
-    <div>=======> main: setValue -> {{ dp(flatCombinedArraySorted) }}</div>
+    <!-- <div>=======> main: setValue -> {{ dp(flatCombinedArraySorted) }}</div>
     <div>=======> main2: setValue2 -> {{ dp(flatCombinedArray) }}</div>
     <div>=======> main3: setValue2 -> {{ dp(storeStateData) }}</div>
-    <div>=======> main4: setValue2 -> {{ dp(storeStateSchema) }}</div>
+    <div>=======> main4: setValue2 -> {{ dp(storeStateSchema) }}</div> -->
 
     <template v-for="(obj, index) in flatCombinedArraySorted">
       <!-- Tooltip Wrapper -->
@@ -101,7 +101,7 @@
                 <template
                   v-else-if="obj.schema.type === 'array'"
                 >
-                  <div>array: setValue -> {{ setValue(obj) }}</div>
+                  <!-- <div>array: setValue -> {{ setValue(obj) }}</div> -->
                   <div
                     v-for="(item, idx) in setValue(obj)"
                     :key="getKeyForArray(id, obj, item, idx)"
@@ -1118,7 +1118,7 @@ export default {
     combineObjectsToArray ({ data, schema }) {
       let arr = []
       let keys = Object.keys(schema)
-      if (Array.isArray(this.storeStateData) && Array.isArray(this.storeStateSchema)) keys = keys.sort() // 解决数组下顺序混乱问题
+      if (Array.isArray(this.storeStateData) && this.storeStateData.length && Array.isArray(this.storeStateSchema)) keys = keys.sort() // 解决数组下顺序混乱问题
       keys.forEach(key => {
         if (!isPlainObject(schema[key])) {
           console.warn(`Schema '${JSON.stringify(schema)}' of Prop '${key}' must be a string with value of type key:'text' or a plainobject with at least key:{ type:'text'} definition.  Prop '${key}' will be ignored!`)
