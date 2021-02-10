@@ -44,7 +44,7 @@
               <!-- slot replaces complete item of defined KEY -> <div slot="slot-item-key-[propertyName]">-->
               <slot :name="getKeyItemSlot(obj)" :obj= "obj" >
               <!-- custom slot on top of key  -->
-              <slot :name="obj.schema.customSlotKey" :obj= "addPaths(obj, prePaths)" />
+              <slot v-for="(i, index) of findAllCustomSlotKeys(obj)" :name="i" :obj= "addPaths(obj, prePaths)" />
               <!-- RADIO -->
                 <v-radio-group
                   v-if="obj.schema.type === 'radio'"
@@ -115,8 +115,9 @@
                         :class="`${id}-${obj.key}`"
                         :prePaths="[obj.key, idx]"
                       >
-                        <template v-for="(i, index) of getCustomSlotKeyArray(obj)" v-slot:[obj.schema.schema[`${i}`].customSlotKey]="{obj}">
-                          <slot :name="obj.schema.customSlotKey" :obj= "obj" />
+                        <!-- <template v-for="(i, index) of getCustomSlotKeyArray(obj)" v-slot:[obj.schema.schema[`${i}`].customSlotKey]="{obj}"> -->
+                        <template v-for="(i, index) of findAllCustomSlotKeys(obj)" v-slot:[i]="{obj}">
+                          <slot v-for="(i, index) of findAllCustomSlotKeys(obj)" :name="i" :obj= "obj" />
                         </template>
                       </v-form-base>
                     </slot>
@@ -398,6 +399,8 @@
 
 <script>
 // import & declarations
+  import findField from  './findField'
+
   import Vue from 'vue'
   import { get, isPlainObject, isFunction, isString, isNumber, isEmpty, orderBy, delay } from 'lodash'
   // Info Mask https://github.com/probil/v-mask
@@ -785,6 +788,17 @@ export default {
   // customSlotKey
     getCustomSlotKeyArray (obj) {
       return Object.keys(obj.schema.schema)
+    },
+
+    findAllCustomSlotKeys(obj) {
+      const result = []
+      findField(obj, (v, k, obj) => {
+        if (k && k == 'customSlotKey') {
+          result.push(v)
+        }
+      })
+      console.log('find custom key: ', result)
+      return result
     },
   //
   // CLASS Names

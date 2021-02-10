@@ -7,6 +7,9 @@
       :schema="mySchema"
       @change:form-base-list="log"
     >
+    <template v-slot:kkkkkkkkt="{ obj }">
+      <div>---------------> : {{ obj }}</div>
+    </template>
      <!-- Label Slot -->
       <template #slot-label-key-listString="{obj}">
         <v-toolbar dark color="red lighten-2" >
@@ -57,21 +60,26 @@ export default {
           }]
         },
         schema: {
-          col: 12,
-          list: [{
-            src: {
-              type: 'file',
-              label: "图片文件",
-              showSize: true,
-              accept: "image/*",
-              class: 'w-full',
-              col: 11,
-              clearable: true,
-              customSlotKey: 'course-image-list-src'
-            },
-            removeImageListItem: { type: 'btn', col: 1, iconLeft: 'mdi-minus', label:'移除', dark: true, small: true, rounded: true, class:'mb-2', color: 'error lighten-2', class: 'mt-3' },
-          }],
-          addImageListItem: { type: 'btn', iconLeft: 'mdi-plus', label:'添加', dark: true, small: true, rounded: true, class:'mb-2', color: 'blue lighten-2', class: 'mt-3' }
+          type: 'group',
+          schema: {
+            type: 'wrap',
+            schema: [{
+              list: [{
+                src: {
+                  type: 'file',
+                  label: "图片文件",
+                  showSize: true,
+                  accept: "image/*",
+                  class: 'w-full',
+                  col: 11,
+                  clearable: true,
+                  customSlotKey: 'kkkkkkkkt'
+                },
+                removeImageListItem: { type: 'btn', col: 1, iconLeft: 'mdi-minus', label:'移除', dark: true, small: true, rounded: true, class:'mb-2', color: 'error lighten-2', class: 'mt-3' },
+              }],
+              addImageListItem: { type: 'btn', iconLeft: 'mdi-plus', label:'添加', dark: true, small: true, rounded: true, class:'mb-2', color: 'blue lighten-2', class: 'mt-3' }
+            }]
+          }
         }
       }
     }
