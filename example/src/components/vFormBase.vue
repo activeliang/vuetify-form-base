@@ -44,7 +44,7 @@
               <!-- slot replaces complete item of defined KEY -> <div slot="slot-item-key-[propertyName]">-->
               <slot :name="getKeyItemSlot(obj)" :obj= "obj" >
               <!-- custom slot on top of key  -->
-              <slot v-for="(i, index) of findAllCustomSlotKeys(obj)" :name="i" :obj= "addPaths(obj, prePaths)" />
+              <slot :name="obj.schema.customSlotKey" :obj= "addPaths(obj, prePaths)" />
               <!-- RADIO -->
                 <v-radio-group
                   v-if="obj.schema.type === 'radio'"
@@ -114,6 +114,7 @@
                         :col="getColGroupOrArray(obj)"
                         :class="`${id}-${obj.key}`"
                         :prePaths="[obj.key, idx]"
+                        :slotKeys="customSlotKeys"
                       >
                         <!-- <template v-for="(i, index) of getCustomSlotKeyArray(obj)" v-slot:[obj.schema.schema[`${i}`].customSlotKey]="{obj}"> -->
                         <template v-for="(i, index) of findAllCustomSlotKeys(obj)" v-slot:[i]="{obj}">
@@ -141,7 +142,12 @@
                       :row="getRowGroupOrArray(obj)"
                       :col="getColGroupOrArray(obj)"
                       :class="`${id}-${obj.key}`"
-                    />
+                      :slotKeys="customSlotKeys"
+                    >
+                    <template v-for="(i, index) of findAllCustomSlotKeys(obj)" v-slot:[i]="{obj}">
+                      <slot v-for="(i, index) of findAllCustomSlotKeys(obj)" :name="i" :obj= "obj" />
+                    </template>
+                    </v-form-base>
                 </div>
                 </template>
               <!-- END GROUP -->
@@ -162,7 +168,12 @@
                       :row="getRowGroupOrArray(obj)"
                       :col="getColGroupOrArray(obj)"
                       :class="`${id}-${obj.key}`"
-                    />
+                      :slotKeys="customSlotKeys"
+                      >
+                      <template v-for="(i, index) of findAllCustomSlotKeys(obj)" v-slot:[i]="{obj}">
+                        <slot v-for="(i, index) of findAllCustomSlotKeys(obj)" :name="i" :obj= "obj" />
+                      </template>
+                      </v-form-base>
                   </div>
                 </template>
               <!-- END WRAP -->
@@ -569,6 +580,10 @@ export default {
     prePaths: {
       type: Array,
       default: () => []
+    },
+    slotKeys: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
@@ -589,6 +604,15 @@ export default {
     }
   },
   computed: {
+    customSlotKeys() {
+      if (this.slotKeys.length) {
+        console.log('8888: ', this.slotKeys)
+        return this.slotKeys
+      }
+      const t = this.findAllCustomSlotKeys(this.schema)
+      console.log('9999: ', this.slotKeys)
+      return t
+    },
     valueIntern() {
       // use <formbase :model="myData" />  ->  legacy code <formbase :value="myData" />
       let model = this.model || this.value
