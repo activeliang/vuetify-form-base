@@ -21276,7 +21276,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"44a53776-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vFormBase.vue?vue&type=template&id=08439f0e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"44a53776-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vFormBase.vue?vue&type=template&id=4dd6ca7f&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-row',_vm._b({directives:[{name:"resize",rawName:"v-resize.quiet",value:(_vm.onResize),expression:"onResize",modifiers:{"quiet":true}}],attrs:{"id":_vm.ref}},'v-row',_vm.getRow,false),[_vm._t(_vm.getFormTopSlot()),_vm._t("default"),_vm._l((_vm.flatCombinedArraySorted),function(obj,index){return [_c('v-tooltip',_vm._b({key:index,attrs:{"disabled":!obj.schema.tooltip},scopedSlots:_vm._u([{key:"activator",fn:function(ref){
 var on = ref.on;
 return [_c('v-col',_vm._g(_vm._b({directives:[{name:"show",rawName:"v-show",value:(!obj.schema.hidden),expression:"!obj.schema.hidden"},{name:"intersect",rawName:"v-intersect",value:(function (entries, observer) { return _vm.onIntersect(entries, observer, obj); }),expression:"(entries, observer) => onIntersect(entries, observer, obj)"},{name:"touch",rawName:"v-touch",value:({ left: function () { return _vm.onSwipe('left', obj); }, right: function () { return _vm.onSwipe('right', obj); }, up: function () { return _vm.onSwipe('up', obj); }, down: function () { return _vm.onSwipe('down', obj); } }),expression:"{ left: () => onSwipe('left', obj), right: () => onSwipe('right', obj), up: () => onSwipe('up', obj), down: () => onSwipe('down', obj) }"}],key:index,class:_vm.getClassName(obj),attrs:{"draggable":obj.schema.drag},on:{"mouseenter":function($event){return _vm.onEvent($event, obj)},"mouseleave":function($event){return _vm.onEvent($event, obj)},"dragstart":function($event){return _vm.dragstart($event, obj)},"dragover":function($event){return _vm.dragover($event, obj)},"drop":function($event){return _vm.drop($event, obj)}}},'v-col',_vm.getGridAttributes(obj),false),on),[_vm._t(_vm.getTypeTopSlot(obj),null,{"obj":obj}),_vm._t(_vm.getKeyTopSlot(obj),null,{"obj":obj}),_vm._t(_vm.getTypeItemSlot(obj),[_vm._t(_vm.getKeyItemSlot(obj),[_vm._t(obj.schema.customSlotKey,null,{"obj":_vm.addPaths(obj, _vm.prePaths)}),(obj.schema.type === 'radio')?_c('v-radio-group',_vm._b({attrs:{"value":_vm.setValue(obj)},on:{"change":function($event){return _vm.onInput($event, obj)}}},'v-radio-group',_vm.bindSchema(obj),false),_vm._l((obj.schema.options),function(o,idx){return _c('v-radio',_vm._b({key:idx,attrs:{"label":_vm.sanitizeOptions(o).label,"value":_vm.sanitizeOptions(o).value}},'v-radio',_vm.bindSchema(obj),false))}),1):(_vm.isDateTimeColorTypeAndExtensionText(obj))?_c('v-menu',_vm._b({scopedSlots:_vm._u([{key:"activator",fn:function(ref){
@@ -21291,7 +21291,7 @@ return [_vm._l((_vm.findAllCustomSlotKeys(obj)),function(i,index){return _vm._t(
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/vFormBase.vue?vue&type=template&id=08439f0e&
+// CONCATENATED MODULE: ./src/components/vFormBase.vue?vue&type=template&id=4dd6ca7f&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__("99af");
@@ -23328,7 +23328,7 @@ var defaultPickerSchemaMenu = {
           schema = _ref.schema;
       var arr = [];
       var keys = Object.keys(schema);
-      if (Array.isArray(this.storeStateData) && this.storeStateData.length && Array.isArray(this.storeStateSchema)) keys = keys.sort(); // 解决数组下顺序混乱问题
+      if (Array.isArray(this.storeStateData) && this.storeStateData.length > 1 && Array.isArray(this.storeStateSchema)) keys = keys.sort(); // 解决数组下顺序混乱问题
 
       keys.forEach(function (key) {
         if (!Object(lodash["isPlainObject"])(schema[key])) {
