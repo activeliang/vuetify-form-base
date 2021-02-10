@@ -113,7 +113,7 @@
                         :row="getRowGroupOrArray(obj)"
                         :col="getColGroupOrArray(obj)"
                         :class="`${id}-${obj.key}`"
-                        :prePaths="[obj.key, idx]"
+                        :prePaths="simplePrePaths(obj.key, idx)"
                         :slotKeys="customSlotKeys"
                       >
                         <!-- <template v-for="(i, index) of getCustomSlotKeyArray(obj)" v-slot:[obj.schema.schema[`${i}`].customSlotKey]="{obj}"> -->
@@ -142,7 +142,7 @@
                       :row="getRowGroupOrArray(obj)"
                       :col="getColGroupOrArray(obj)"
                       :class="`${id}-${obj.key}`"
-                      :slotKeys="customSlotKeys"
+                      :prePaths="simplePrePaths(obj.key)"
                     >
                     <template v-for="(i, index) of findAllCustomSlotKeys(obj)" v-slot:[i]="{obj}">
                       <slot v-for="(i, index) of findAllCustomSlotKeys(obj)" :name="i" :obj= "obj" />
@@ -168,7 +168,7 @@
                       :row="getRowGroupOrArray(obj)"
                       :col="getColGroupOrArray(obj)"
                       :class="`${id}-${obj.key}`"
-                      :slotKeys="customSlotKeys"
+                      :prePaths="simplePrePaths(obj.key)"
                       >
                       <template v-for="(i, index) of findAllCustomSlotKeys(obj)" v-slot:[i]="{obj}">
                         <slot v-for="(i, index) of findAllCustomSlotKeys(obj)" :name="i" :obj= "obj" />
@@ -606,11 +606,9 @@ export default {
   computed: {
     customSlotKeys() {
       if (this.slotKeys.length) {
-        console.log('8888: ', this.slotKeys)
         return this.slotKeys
       }
       const t = this.findAllCustomSlotKeys(this.schema)
-      console.log('9999: ', this.slotKeys)
       return t
     },
     valueIntern() {
@@ -821,8 +819,12 @@ export default {
           result.push(v)
         }
       })
-      console.log('find custom key: ', result)
       return result
+    },
+    simplePrePaths(...keys) {
+      const target = JSON.parse(JSON.stringify(this.prePaths))
+      target.push(...keys)
+      return target
     },
   //
   // CLASS Names

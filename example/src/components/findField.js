@@ -13,7 +13,6 @@ const findField = (obj, callback) => {
 
     if (obj instanceof Array) {
       for (var i = 0; i < obj.length; ++i) {
-        console.log('对象属性名值：', i, obj[i], '----> path:', path);
         handleValue(obj[i], path, i, obj, callback, v => result.push(v))
         if (obj[i] instanceof Object) {
           const newPath = deepCopy(path)
@@ -23,7 +22,6 @@ const findField = (obj, callback) => {
       }
     } else {
       for (var key in obj) {
-        console.log('对象属性名值：', key, obj[key], '----> path:', path);
         handleValue(obj[key], path, key, obj, callback, v => result.push(v))
         if (obj[key] instanceof Object) {
           const newPath = deepCopy(path)
