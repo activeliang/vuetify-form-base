@@ -632,9 +632,12 @@ export default {
   mounted() {
   },
   watch: {
-    schema: function(newSchema) {
-      this.rebuildArrays(this.valueIntern, newSchema)
-      this.schema = newSchema
+    schema: {
+      deep: true,
+      handler(newSchema) {
+        this.rebuildArrays(this.valueIntern, newSchema)
+        this.schema = newSchema
+      }
     }
   },
   methods: {

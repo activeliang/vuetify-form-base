@@ -6,7 +6,7 @@
   "author": "wotamann@github",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run build:vue & npm run build:cli & npm run copy",
+    "build": "npm run build:cli & npm run copy",
     "build:vue": "vue-cli-service build --dest ../../../../../wotamann.github.io/static --target app ",
     "build:cli": "vue-cli-service build --dest ../umd --target lib --name vFormBase ./src/components/vFormBase.vue",
     "build:wc": "vue-cli-service build --dest ../dist/wc --target lib --name v-form-base ./src/components/vFormBase.vue",

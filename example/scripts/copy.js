@@ -11,14 +11,14 @@ const doTheJob = async() => {
   // await fse.ensureDir(dir)
   console.log(`fse.ensureDir(dir) ### finished ###`);
 
-  await fse.copy('./public/index-cdn.html', '../dist/index-cdn.html');
-  console.log(`fse.copy(./public/index-cdn.html, ../dist/index-cdn.html) ### finished ###`);
+  // await fse.copy('./public/index-cdn.html', '../dist/index-cdn.html');
+  // console.log(`fse.copy(./public/index-cdn.html, ../dist/index-cdn.html) ### finished ###`);
 
   await fse.copy('./src/components/vFormBase.vue', '../dist/src/vFormBase.vue');
   console.log(`fse.copy('./src/components/vFormBase.vue', '../dist/src/vFormBase.vue') ### finished ###`);
 
   // await fse.copy('../../../../../wotamann.github.io/static/index.html', '../../../../../wotamann.github.io/static/404.html');
-  console.log(`fse.copy('../../../../../wotamann.github.io/static/index.html', '../../../../../wotamann.github.io/static/404.html') ### finished ###`);
+  // console.log(`fse.copy('../../../../../wotamann.github.io/static/index.html', '../../../../../wotamann.github.io/static/404.html') ### finished ###`);
 
   // dir = `../../../../../wotamann.github.io/static`;
   // const destDir = `../../../../../wotamann.github.io`;
