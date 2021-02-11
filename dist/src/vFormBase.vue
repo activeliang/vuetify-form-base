@@ -174,7 +174,6 @@
                       :row="getRowGroupOrArray(obj)"
                       :col="getColGroupOrArray(obj)"
                       :class="`${id}-${obj.key}`"
-                      :prePaths="simplePrePaths(obj.key)"
                       >
                       <template v-for="(i, index) of findAllCustomSlotKeys(obj)" v-slot:[i]="{obj}">
                         <slot v-for="(i, index) of findAllCustomSlotKeys(obj)" :name="i" :obj= "obj" />
