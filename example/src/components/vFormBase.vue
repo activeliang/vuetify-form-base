@@ -1118,7 +1118,7 @@ export default {
     combineObjectsToArray ({ data, schema }) {
       let arr = []
       let keys = Object.keys(schema)
-      if (Array.isArray(this.storeStateData) && this.storeStateData.length > 1 && Array.isArray(this.storeStateSchema)) keys = keys.sort() // 解决数组下顺序混乱问题
+      if (Array.isArray(this.storeStateData) && this.storeStateData.length > 1 && Array.isArray(this.storeStateSchema)) keys = keys.sort((a, b) => parseInt(a.split(',')[0]) - parseInt(b.split(',')[0])) // 解决数组下顺序混乱问题
       keys.forEach(key => {
         if (!isPlainObject(schema[key])) {
           console.warn(`Schema '${JSON.stringify(schema)}' of Prop '${key}' must be a string with value of type key:'text' or a plainobject with at least key:{ type:'text'} definition.  Prop '${key}' will be ignored!`)
