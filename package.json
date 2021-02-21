@@ -1,6 +1,6 @@
 {
-  "name": "custom-vuetify-form-base",
-  "version": "0.2",
+  "name": "vuetify-form-base",
+  "version": "0.3.2",
   "description": "Form-Generator as Vue-Component using Vuetify 2.0",
   "main": "index.js",
   "module": "umd/vFormBase.umd.min.js",
@@ -32,6 +32,8 @@
     "grid",
     "controls"
   ],
+  "author": "woko@aon.at",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com:activeliang/v-form-base/issues"
   },
