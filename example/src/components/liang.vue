@@ -42,13 +42,22 @@
 
         },
         mySchema: {
-          group1: { type:'wrap', label:'Group 1', col:6, class:'title pa-2 elevation-4',
-            schema:{
-              name1,
-              check1
-            }
-          }
+      liang: {
+        type: 'wrap',
+        class: 'border rounded my-1 p-2 flex',
+        style: 'border-color: #00BCD4;',
+        schema: {
+          content: {
+            type: "text",
+            label: "内容",
+            clearable: true,
+            hint: "请输入文字内容或tips",
+            col: 11
+          },
+          removeTureOrFalseText: { type: 'btn', col: 1, iconLeft: 'mdi-minus', label:'移除', dark: true, small: true, rounded: true, class:'mb-2', color: 'error lighten-2', class: 'mt-3' }
         }
+      }
+    }
       }
     },
     methods: {
