@@ -1,8 +1,10 @@
 {
   "name": "vuetify-form-base",
-  "version": "0.3.2",
+  "version": "9.2",
   "description": "Form-Generator as Vue-Component using Vuetify 2.0",
   "main": "index.js",
+  "module": "umd/vFormBase.umd.min.js",
+  "unpkg": "umd/vFormBase.umd.min.js",
   "scripts": {},
   "dependencies": {
     "lodash": "^4.17.19",
@@ -30,8 +32,6 @@
     "grid",
     "controls"
   ],
-  "author": "woko@aon.at",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com:activeliang/v-form-base/issues"
   },
